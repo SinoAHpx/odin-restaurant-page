@@ -15,7 +15,9 @@ module.exports = {
       filename: 'index.html',
       template: 'src/template.html'
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: 'style.css'
+    })
   ],
   module: {
     rules: [
@@ -24,5 +26,13 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 8080,
+    hot: true,
   },
 };
